@@ -38,7 +38,39 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let crystalArr = [];
+    let i = 0;
+    while(i < expr.length){
+        let newArr = expr.split('').slice(i, i+10);
+        let j = 0;
+            while(newArr[j] == 0){
+                newArr.shift();
+            }
+        console.log(newArr);
+        let veryNewArr = [];
+            for (let x=0; x < newArr.length; x+=2){
+                let littleArr = newArr.slice(x, x+2).join('');
+                if(littleArr == 10){
+                    littleArr = '.';
+                } else if(littleArr == 11){
+                    littleArr = '-';
+                } else {
+                    littleArr = ' ';
+                }
+                veryNewArr.push(littleArr);
+            }
+        veryNewArr = veryNewArr.join('');
+        crystalArr.push(veryNewArr);
+        console.log(veryNewArr);
+        i+= 10;
+    }
+    for(let i=0; i < crystalArr.length; i++){
+        if(MORSE_TABLE.hasOwnProperty(crystalArr[i])){
+            crystalArr[i] = MORSE_TABLE[crystalArr[i]];
+        }
+    }
+    console.log(crystalArr);
+    return crystalArr.join('');
 }
 
 module.exports = {

@@ -46,7 +46,6 @@ function decode(expr) {
             while(newArr[j] == 0){
                 newArr.shift();
             }
-        console.log(newArr);
         let veryNewArr = [];
             for (let x=0; x < newArr.length; x+=2){
                 let littleArr = newArr.slice(x, x+2).join('');
@@ -59,9 +58,7 @@ function decode(expr) {
                 }
                 veryNewArr.push(littleArr);
             }
-        veryNewArr = veryNewArr.join('');
-        crystalArr.push(veryNewArr);
-        console.log(veryNewArr);
+        crystalArr.push(veryNewArr.join(''));
         i+= 10;
     }
     for(let i=0; i < crystalArr.length; i++){
@@ -69,8 +66,7 @@ function decode(expr) {
             crystalArr[i] = MORSE_TABLE[crystalArr[i]];
         }
     }
-    console.log(crystalArr);
-    return crystalArr.join('');
+    return crystalArr.join('').replace(/ +/g, ' ').trim();
 }
 
 module.exports = {
